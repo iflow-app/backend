@@ -1,0 +1,19 @@
+{
+    "type": "postgres",
+    "port": 5432,
+    "host": "iflow_db",
+    "username": "iflow-manager",
+    "password": "qwe123",
+    "database": "iflow",
+    "synchronize": false,
+    "migrations": [
+        "./src/database/migrations/*.ts"
+    ],
+    "entities": [
+        "./src/model/*.ts"
+    ],
+    "cli": {
+        "migrationsDir": "./src/database/migrations",
+        "entitiesDir": "./src/model"
+    }
+}
