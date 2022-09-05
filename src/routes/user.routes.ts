@@ -1,8 +1,11 @@
 import { Router } from "express";
-import { v4 as uuidV4 } from "uuid";
+
+import { CreateUserController } from "../modules/accounts/useCases/createUser/CreateUserController";
 
 const userRoutes = Router();
 
-userRoutes.post("/", (request, response) => { });
+const createUserController = new CreateUserController();
+
+userRoutes.post("/", createUserController.handle);
 
 export { userRoutes };
