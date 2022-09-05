@@ -9,10 +9,10 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
+import { Project } from "../../accounts/entities/Project";
+import { Requirement } from "../../requirements/entities/Requirement";
+import { Verification } from "../../verifications/entities/Verification";
 import { Content } from "./Content";
-import { Project } from "./Project";
-import { Requirement } from "./Requirement";
-import { Verification } from "./Verification";
 
 enum ArtifactStageEnum {
   PreTracebility = "pre-traceability",

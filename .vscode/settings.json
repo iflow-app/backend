@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["nfunctional"]
+  "cSpell.words": ["nfunctional"],
+  "conventionalCommits.scopes": ["entities"]
 }

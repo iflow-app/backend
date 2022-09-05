@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Artifact } from "./Artifact";
+import { Artifact } from "../../artifacts/entities/Artifact";
 import { Checkpoint } from "./Checkpoint";
 
 @Entity()

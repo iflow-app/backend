@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Project } from "./Project";
+import { Project } from "../../accounts/entities/Project";
 
 enum LexicalTypeEnum {
   Verb = "verb",

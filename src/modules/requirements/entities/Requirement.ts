@@ -7,8 +7,8 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Artifact } from "./Artifact";
-import { Project } from "./Project";
+import { Project } from "../../accounts/entities/Project";
+import { Artifact } from "../../artifacts/entities/Artifact";
 
 @Entity()
 class Requirement {

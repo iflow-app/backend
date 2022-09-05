@@ -8,9 +8,9 @@ import {
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-import { Artifact } from "./Artifact";
-import { Lexical } from "./Lexical";
-import { Requirement } from "./Requirement";
+import { Artifact } from "../../artifacts/entities/Artifact";
+import { Lexical } from "../../artifacts/entities/Lexical";
+import { Requirement } from "../../requirements/entities/Requirement";
 import { User } from "./User";
 
 @Entity()
