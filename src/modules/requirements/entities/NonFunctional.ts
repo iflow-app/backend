@@ -27,12 +27,15 @@ class NonFunctional {
   @Column("smallint")
   priority: string;
 
+  @Column({ nullable: true })
+  nfr_links_id?: string;
+
   @OneToOne(() => Requirement, { nullable: false })
   @JoinColumn({ name: "requirement_id" })
   requirement_id: Requirement;
 
   @ManyToOne(() => NonFunctional, { nullable: true })
-  @JoinColumn({ name: "nfr_links" })
+  @JoinColumn({ name: "nfr_links_id" })
   nfr_links?: NonFunctional;
 
   @OneToMany(() => NonFunctional, (functional) => functional.nfr_links)

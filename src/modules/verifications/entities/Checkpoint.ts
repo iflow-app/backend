@@ -29,12 +29,15 @@ class Checkpoint {
   @Column("text")
   criteria: string;
 
+  @Column()
+  verification_id: string;
+
   @ManyToOne(() => Verification, { nullable: false })
   @JoinColumn({
     name: "verification_id",
     referencedColumnName: "verification_id",
   })
-  verification_id: Verification;
+  verification: Verification;
 
   constructor() {
     if (!this.checkpoint_id) {

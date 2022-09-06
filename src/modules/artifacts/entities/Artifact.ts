@@ -36,24 +36,30 @@ class Artifact {
   @Column("text")
   objective: string;
 
+  @Column()
+  project_id: string;
+
+  @Column({ nullable: true })
+  evolve_id?: string;
+
   @ManyToOne(() => Project, { nullable: false })
   @JoinColumn({ name: "project_id" })
-  project_id: Project;
+  project: Project;
 
-  @OneToMany(() => Content, (content) => content.artifact_id)
+  @OneToMany(() => Content, (content) => content.artifact)
   contents: Content[];
 
   @ManyToOne(() => Artifact, { nullable: true })
   @JoinColumn({ name: "evolve_id" })
-  evolve_id?: Artifact;
+  evolve?: Artifact;
 
-  @OneToMany(() => Artifact, (artifact) => artifact.evolve_id)
+  @OneToMany(() => Artifact, (artifact) => artifact.evolve)
   evolved_id?: Artifact[];
 
-  @OneToMany(() => Requirement, (requirement) => requirement.artifact_id)
+  @OneToMany(() => Requirement, (requirement) => requirement.artifact)
   requirements: Requirement[];
 
-  @OneToMany(() => Verification, (verification) => verification.artifact_id)
+  @OneToMany(() => Verification, (verification) => verification.artifact)
   verifications: Verification[];
 
   constructor() {

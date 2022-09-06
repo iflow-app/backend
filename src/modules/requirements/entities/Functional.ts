@@ -38,12 +38,15 @@ class Functional {
   @Column()
   name: string;
 
+  @Column({ nullable: true })
+  backlog_links_id?: string;
+
   @OneToOne(() => Requirement, { nullable: false })
   @JoinColumn({ name: "requirement_id" })
   requirement_id: Requirement;
 
   @ManyToOne(() => Functional, { nullable: true })
-  @JoinColumn({ name: "backlog_links" })
+  @JoinColumn({ name: "backlog_links_id" })
   backlog_links?: Functional;
 
   @OneToMany(() => Functional, (functional) => functional.backlog_links)

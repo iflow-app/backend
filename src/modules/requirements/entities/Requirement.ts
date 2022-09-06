@@ -27,13 +27,19 @@ class Requirement {
   @Column("text")
   why: string;
 
+  @Column()
+  project_id: string;
+
+  @Column({ nullable: true })
+  artifact_id?: string;
+
   @ManyToOne(() => Artifact, { nullable: true })
   @JoinColumn({ name: "artifact_id", referencedColumnName: "artifact_id" })
-  artifact_id: Artifact;
+  artifact: Artifact;
 
   @ManyToOne(() => Project, { nullable: false })
   @JoinColumn({ name: "project_id" })
-  project_id: Project;
+  project: Project;
 
   constructor() {
     if (!this.requirement_id) {

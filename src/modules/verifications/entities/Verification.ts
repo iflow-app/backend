@@ -19,11 +19,14 @@ class Verification {
   @Column("text")
   name: string;
 
-  @ManyToOne(() => Artifact, { nullable: true })
-  @JoinColumn({ name: "artifact_id", referencedColumnName: "artifact_id" })
-  artifact_id: Artifact;
+  @Column()
+  artifact_id: string;
 
-  @OneToMany(() => Checkpoint, (checkpoint) => checkpoint.verification_id)
+  @ManyToOne(() => Artifact, { nullable: false })
+  @JoinColumn({ name: "artifact_id", referencedColumnName: "artifact_id" })
+  artifact: Artifact;
+
+  @OneToMany(() => Checkpoint, (checkpoint) => checkpoint.verification)
   checkpoints: Checkpoint[];
 
   constructor() {

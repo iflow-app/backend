@@ -5,6 +5,7 @@
     "user",
     "project",
     "content",
-    "auth"
+    "auth",
+    "typeorm"
   ]
 }

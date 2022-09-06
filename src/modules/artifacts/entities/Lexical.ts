@@ -29,9 +29,12 @@ class Lexical {
   @Column({ type: "enum", enum: LexicalTypeEnum })
   type: string;
 
-  @ManyToOne(() => Project)
+  @Column()
+  project_id: string;
+
+  @ManyToOne(() => Project, { nullable: false })
   @JoinColumn({ name: "project_id" })
-  project_id: Project;
+  project: Project;
 
   constructor() {
     if (!this.lexical_id) {
