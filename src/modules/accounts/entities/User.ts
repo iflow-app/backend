@@ -24,7 +24,7 @@ class User {
   @Column()
   name: string;
 
-  @OneToMany(() => Project, (project) => project.user_id)
+  @OneToMany(() => Project, (project) => project.user)
   projects: Project[];
 
   constructor() {
