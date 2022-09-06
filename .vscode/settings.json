@@ -1,4 +1,10 @@
 {
   "cSpell.words": ["nfunctional"],
-  "conventionalCommits.scopes": ["entities", "user", "project", "content"]
+  "conventionalCommits.scopes": [
+    "entities",
+    "user",
+    "project",
+    "content",
+    "auth"
+  ]
 }
