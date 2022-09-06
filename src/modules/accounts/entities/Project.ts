@@ -27,9 +27,12 @@ class Project {
   @Column("text")
   objective: string;
 
+  @Column()
+  user_id: string;
+
   @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: "user_id" })
-  user_id: User;
+  user: User;
 
   @OneToMany(() => Artifact, (artifact) => artifact.project_id)
   artifacts: Artifact[];
