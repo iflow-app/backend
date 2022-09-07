@@ -5,21 +5,24 @@ import {
   Column,
   OneToOne,
   JoinColumn,
-  ManyToOne,
   OneToMany,
-  Unique,
 } from "typeorm";
-import { v4 as uuidV4 } from "uuid";
 
 import { HouseOfQuality } from "./HouseOfQuality";
 import { Requirement } from "./Requirement";
+
+enum NonFunctionalPriorityEnum {
+  one = "one",
+  two = "two",
+  three = "three",
+}
 
 @Entity()
 class NonFunctional {
   @PrimaryGeneratedColumn("increment")
   nfunctional_id: number;
 
-  @Column("smallint")
+  @Column({ type: "enum", enum: NonFunctionalPriorityEnum, nullable: true })
   priority: string;
 
   @Column({ nullable: true })
@@ -40,4 +43,4 @@ class NonFunctional {
   house_of_quality?: HouseOfQuality[];
 }
 
-export { NonFunctional };
+export { NonFunctional, NonFunctionalPriorityEnum };
