@@ -28,9 +28,12 @@ class NonFunctional {
   @Column({ nullable: true })
   nfr_links_id?: string;
 
+  @Column()
+  requirement_id: string;
+
   @OneToOne(() => Requirement, { nullable: false })
   @JoinColumn({ name: "requirement_id" })
-  requirement_id: Requirement;
+  requirement: Requirement;
 
   @OneToOne(() => NonFunctional, { nullable: true })
   @JoinColumn({ name: "nfr_links_id" })

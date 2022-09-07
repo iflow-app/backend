@@ -10,7 +10,9 @@ import { ArtifactRepository } from "../../modules/artifacts/repositories/impleme
 import { ContentRepository } from "../../modules/artifacts/repositories/implementations/ContentRepository";
 import { IFunctionalRepository } from "../../modules/requirements/repositories/IFunctionalRepository";
 import { FunctionalRepository } from "../../modules/requirements/repositories/implementations/FunctionalRepository";
+import { NonFunctionalRepository } from "../../modules/requirements/repositories/implementations/NonFunctionalRepository";
 import { RequirementRepository } from "../../modules/requirements/repositories/implementations/RequirementRepository";
+import { INonFunctionalRepository } from "../../modules/requirements/repositories/INonFunctionalRepository";
 import { IRequirementRepository } from "../../modules/requirements/repositories/IRequirementRepository";
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
@@ -38,4 +40,9 @@ container.registerSingleton<IRequirementRepository>(
 container.registerSingleton<IFunctionalRepository>(
   "FunctionalRepository",
   FunctionalRepository
+);
+
+container.registerSingleton<INonFunctionalRepository>(
+  "NonFunctionalRepository",
+  NonFunctionalRepository
 );
