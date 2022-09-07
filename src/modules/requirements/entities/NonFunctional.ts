@@ -15,14 +15,9 @@ import { HouseOfQuality } from "./HouseOfQuality";
 import { Requirement } from "./Requirement";
 
 @Entity()
-@Unique(["nfr_links"])
-@Unique(["requirement_id", "identifier"])
 class NonFunctional {
-  @PrimaryGeneratedColumn("uuid")
-  nfunctional_id: string;
-
-  @Column()
-  identifier: string;
+  @PrimaryGeneratedColumn("increment")
+  nfunctional_id: number;
 
   @Column("smallint")
   priority: string;
@@ -34,24 +29,15 @@ class NonFunctional {
   @JoinColumn({ name: "requirement_id" })
   requirement_id: Requirement;
 
-  @ManyToOne(() => NonFunctional, { nullable: true })
+  @OneToOne(() => NonFunctional, { nullable: true })
   @JoinColumn({ name: "nfr_links_id" })
   nfr_links?: NonFunctional;
-
-  @OneToMany(() => NonFunctional, (functional) => functional.nfr_links)
-  nfr_linked?: NonFunctional[];
 
   @OneToMany(
     () => HouseOfQuality,
     (houseOfQuality) => houseOfQuality.nfunctional_id
   )
   house_of_quality?: HouseOfQuality[];
-
-  constructor() {
-    if (!this.nfunctional_id) {
-      this.nfunctional_id = uuidV4();
-    }
-  }
 }
 
 export { NonFunctional };

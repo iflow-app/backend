@@ -22,7 +22,7 @@ enum FunctionalLevelTypeEnum {
 @Entity()
 class Functional {
   @PrimaryGeneratedColumn("increment")
-  functional_id: string;
+  functional_id: number;
 
   @Column({
     type: "enum",
