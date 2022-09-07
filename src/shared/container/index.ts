@@ -8,6 +8,8 @@ import { IArtifactRepository } from "../../modules/artifacts/repositories/IArtif
 import { IContentRepository } from "../../modules/artifacts/repositories/IContentRepository";
 import { ArtifactRepository } from "../../modules/artifacts/repositories/implementations/ArtifactRepository";
 import { ContentRepository } from "../../modules/artifacts/repositories/implementations/ContentRepository";
+import { IFunctionalRepository } from "../../modules/requirements/repositories/IFunctionalRepository";
+import { FunctionalRepository } from "../../modules/requirements/repositories/implementations/FunctionalRepository";
 import { RequirementRepository } from "../../modules/requirements/repositories/implementations/RequirementRepository";
 import { IRequirementRepository } from "../../modules/requirements/repositories/IRequirementRepository";
 
@@ -31,4 +33,9 @@ container.registerSingleton<IArtifactRepository>(
 container.registerSingleton<IRequirementRepository>(
   "RequirementRepository",
   RequirementRepository
+);
+
+container.registerSingleton<IFunctionalRepository>(
+  "FunctionalRepository",
+  FunctionalRepository
 );

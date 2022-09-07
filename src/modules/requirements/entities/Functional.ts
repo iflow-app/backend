@@ -31,9 +31,12 @@ class Functional {
   })
   level_type: string;
 
+  @Column({ nullable: false })
+  requirement_id: string;
+
   @OneToOne(() => Requirement, { nullable: false })
   @JoinColumn({ name: "requirement_id" })
-  requirement_id: Requirement;
+  requirement: Requirement;
 
   @ManyToMany(() => Functional)
   @JoinTable({ name: "backlog" })
