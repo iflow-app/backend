@@ -6,11 +6,9 @@ import {
   OneToOne,
   JoinColumn,
   OneToMany,
-  Unique,
   ManyToMany,
   JoinTable,
 } from "typeorm";
-import { v4 as uuidV4 } from "uuid";
 
 import { HouseOfQuality } from "./HouseOfQuality";
 import { Requirement } from "./Requirement";
@@ -22,22 +20,16 @@ enum FunctionalLevelTypeEnum {
 }
 
 @Entity()
-@Unique(["requirement_id", "identifier"])
 class Functional {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn("increment")
   functional_id: string;
 
   @Column({
     type: "enum",
     enum: FunctionalLevelTypeEnum,
+    nullable: true,
   })
   level_type: string;
-
-  @Column()
-  identifier: string;
-
-  @Column()
-  name: string;
 
   @OneToOne(() => Requirement, { nullable: false })
   @JoinColumn({ name: "requirement_id" })
@@ -52,12 +44,6 @@ class Functional {
     (house_of_quality) => house_of_quality.functional_id
   )
   house_of_quality?: HouseOfQuality[];
-
-  constructor() {
-    if (!this.functional_id) {
-      this.functional_id = uuidV4();
-    }
-  }
 }
 
 export { Functional, FunctionalLevelTypeEnum };
