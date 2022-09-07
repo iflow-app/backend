@@ -33,9 +33,6 @@ class Artifact {
   })
   stage: string;
 
-  @Column("text")
-  objective: string;
-
   @Column()
   project_id: string;
 

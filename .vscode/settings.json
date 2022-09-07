@@ -6,6 +6,7 @@
     "project",
     "content",
     "auth",
-    "typeorm"
+    "typeorm",
+    "artifact"
   ]
 }
