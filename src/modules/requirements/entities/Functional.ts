@@ -5,9 +5,10 @@ import {
   Column,
   OneToOne,
   JoinColumn,
-  ManyToOne,
   OneToMany,
   Unique,
+  ManyToMany,
+  JoinTable,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
@@ -38,19 +39,13 @@ class Functional {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
-  backlog_links_id?: string;
-
   @OneToOne(() => Requirement, { nullable: false })
   @JoinColumn({ name: "requirement_id" })
   requirement_id: Requirement;
 
-  @ManyToOne(() => Functional, { nullable: true })
-  @JoinColumn({ name: "backlog_links_id" })
-  backlog_links?: Functional;
-
-  @OneToMany(() => Functional, (functional) => functional.backlog_links)
-  backlog_linked?: Functional[];
+  @ManyToMany(() => Functional)
+  @JoinTable({ name: "backlog" })
+  backlog_relations: Functional[];
 
   @OneToMany(
     () => HouseOfQuality,
