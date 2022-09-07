@@ -9,7 +9,9 @@ import { IContentRepository } from "../../modules/artifacts/repositories/IConten
 import { ArtifactRepository } from "../../modules/artifacts/repositories/implementations/ArtifactRepository";
 import { ContentRepository } from "../../modules/artifacts/repositories/implementations/ContentRepository";
 import { IFunctionalRepository } from "../../modules/requirements/repositories/IFunctionalRepository";
+import { IHouseOfQualityRepository } from "../../modules/requirements/repositories/IHouseOfQualityRepository";
 import { FunctionalRepository } from "../../modules/requirements/repositories/implementations/FunctionalRepository";
+import { HouseOfQualityRepository } from "../../modules/requirements/repositories/implementations/HouseOfQualityRepository";
 import { NonFunctionalRepository } from "../../modules/requirements/repositories/implementations/NonFunctionalRepository";
 import { RequirementRepository } from "../../modules/requirements/repositories/implementations/RequirementRepository";
 import { INonFunctionalRepository } from "../../modules/requirements/repositories/INonFunctionalRepository";
@@ -45,4 +47,9 @@ container.registerSingleton<IFunctionalRepository>(
 container.registerSingleton<INonFunctionalRepository>(
   "NonFunctionalRepository",
   NonFunctionalRepository
+);
+
+container.registerSingleton<IHouseOfQualityRepository>(
+  "HouseOfQualityRepository",
+  HouseOfQualityRepository
 );
