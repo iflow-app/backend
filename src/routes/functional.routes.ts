@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { CreateBacklogRelationController } from "../modules/requirements/useCases/createBacklogRelation/CreateBacklogRelationController";
 import { CreateFunctionalController } from "../modules/requirements/useCases/createFunctional/CreateFunctionalController";
+import { ListFunctionalController } from "../modules/requirements/useCases/listFunctional/ListFunctionalController";
 import { UpdateFunctionalController } from "../modules/requirements/useCases/updateFunctional/UpdateFunctionalController";
 
 const functionalRoutes = Router();
@@ -17,5 +18,8 @@ functionalRoutes.patch(
   "/:functional_id/backlog",
   createBacklogRelationController.handle
 );
+
+const listFunctionalController = new ListFunctionalController();
+functionalRoutes.get("/", listFunctionalController.handle);
 
 export { functionalRoutes };
