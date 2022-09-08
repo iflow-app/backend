@@ -2,12 +2,12 @@ import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 
-import { router } from "./shared/infra/http/routes";
+import { router } from "./routes";
 
-import "./database";
+import "../../../database";
 
-import "./shared/container";
-import { AppError } from "./shared/errors/AppError";
+import "../../container";
+import { AppError } from "../../errors/AppError";
 
 const app = express();
 
