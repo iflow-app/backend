@@ -1,11 +1,10 @@
 import { FunctionalLevelTypeEnum } from "../entities/Functional";
+import { IListRequirementDTO } from "./IListRequirementDTO";
 
-interface IListFunctionalDTO {
+interface IListFunctionalDTO extends IListRequirementDTO {
   requirement?: boolean;
   backlog?: boolean;
   level_type?: FunctionalLevelTypeEnum;
-  project_id?: string;
-  artifact_id?: string;
 }
 
 export { IListFunctionalDTO };
