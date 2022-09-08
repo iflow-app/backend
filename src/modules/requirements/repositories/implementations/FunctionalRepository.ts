@@ -39,7 +39,7 @@ class FunctionalRepository implements IFunctionalRepository {
 
       return !!affected;
     } catch {
-      throw new AppError(`Invalid key ${level_type} to update a Functional!`);
+      throw new AppError(`Invalid key [${level_type}] to update a Functional!`);
     }
   }
 }

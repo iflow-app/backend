@@ -26,7 +26,7 @@ class NonFunctional {
   priority: string;
 
   @Column({ nullable: true })
-  nfr_links_id?: string;
+  nfr_links_id?: number;
 
   @Column()
   requirement_id: string;
