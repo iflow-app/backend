@@ -1,6 +1,6 @@
 import { getRepository, ObjectLiteral, Repository } from "typeorm";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 import { nestedFilter, requirementsFilters } from "../../../../utils/filters";
 import { ICreateBacklogRelationDTO } from "../../dtos/ICreateBacklogRelationDTO";
 import { IListFunctionalDTO } from "../../dtos/IListFunctionalDTO";

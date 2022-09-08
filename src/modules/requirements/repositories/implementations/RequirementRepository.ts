@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateRequirementDTO } from "../../dtos/ICreateRequirementDTO";
 import { Requirement } from "../../entities/Requirement";
 import { IRequirementRepository } from "../IRequirementRepository";

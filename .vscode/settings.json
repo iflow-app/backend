@@ -10,6 +10,7 @@
     "artifact",
     "requirement",
     "houseOfQuality",
-    "filters"
+    "filters",
+    "error"
   ]
 }

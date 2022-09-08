@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateHouseOfQualityDTO } from "../../dtos/ICreateHouseOfQualityDTO";
 import { HouseOfQuality } from "../../entities/HouseOfQuality";
 import { IHouseOfQualityRepository } from "../IHouseOfQualityRepository";

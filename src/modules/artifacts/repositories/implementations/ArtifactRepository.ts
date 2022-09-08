@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 
-import { AppError } from "../../../../errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateArtifactDTO } from "../../dtos/ICreateArtifactDTO";
 import { Artifact } from "../../entities/Artifact";
 import { IArtifactRepository } from "../IArtifactRepository";
