@@ -7,12 +7,12 @@
     "database": "iflow",
     "synchronize": false,
     "migrations": [
-        "./src/database/migrations/*.ts"
+        "./src/shared/infra/database/migrations/*.ts"
     ],
     "entities": [
         "./src/modules/**/entities/*.ts"
     ],
     "cli": {
-        "migrationsDir": "./src/database/migrations"
+        "migrationsDir": "./src/shared/infra/database/migrations"
     }
 }

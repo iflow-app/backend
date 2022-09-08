@@ -4,7 +4,7 @@ import "express-async-errors";
 
 import { router } from "./routes";
 
-import "../../../database";
+import "../database";
 
 import "../../container";
 import { AppError } from "../../errors/AppError";
