@@ -40,8 +40,6 @@ class UserRepository implements IUserRepository {
       where: { user_id },
     });
 
-    console.log(user);
-
     return user.projects;
   }
 }

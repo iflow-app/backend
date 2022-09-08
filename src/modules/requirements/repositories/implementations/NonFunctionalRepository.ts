@@ -91,9 +91,6 @@ class NonFunctionalRepository implements INonFunctionalRepository {
       );
     }
 
-    console.log(requirementFilters);
-    console.log(relations);
-
     const nonFunctionalList = await this.repository.find({
       relations,
       where,
