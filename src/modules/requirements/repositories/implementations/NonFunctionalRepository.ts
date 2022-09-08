@@ -1,6 +1,8 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, ObjectLiteral, Repository } from "typeorm";
 
 import { AppError } from "../../../../errors/AppError";
+import { nestedFilter, requirementsFilters } from "../../../../utils/filters";
+import { IListNonFunctionalDTO } from "../../dtos/IListNonFunctionalDTO";
 import { IUpdateNonFunctionalDTO } from "../../dtos/IUpdateNonFunctionalDTO";
 import {
   NonFunctional,
@@ -49,6 +51,55 @@ class NonFunctionalRepository implements INonFunctionalRepository {
 
       throw new AppError("Invalid key for nfr_links_id!");
     }
+  }
+
+  async list({
+    requirement,
+    nfr,
+    priority,
+    artifact_id,
+    project_id,
+  }: IListNonFunctionalDTO): Promise<NonFunctional[]> {
+    const requirementFilters = requirementsFilters({ artifact_id, project_id });
+
+    const where: ObjectLiteral = {
+      ...(!!requirementFilters && requirementFilters),
+      ...(!!priority && { priority }),
+    };
+
+    let relations: string[] = [
+      ...(Object.keys(requirementFilters).length > 0 || requirement
+        ? ["requirement"]
+        : []),
+    ];
+
+    if (nfr) {
+      relations = relations.concat(
+        nestedFilter(
+          "nfr_links",
+          Object.values(NonFunctionalPriorityEnum).indexOf(priority)
+        )
+      );
+    }
+
+    if (requirement && nfr) {
+      relations = relations.concat(
+        nestedFilter(
+          "nfr_links.requirement",
+          Object.values(NonFunctionalPriorityEnum).indexOf(priority)
+        )
+      );
+    }
+
+    console.log(requirementFilters);
+    console.log(relations);
+
+    const nonFunctionalList = await this.repository.find({
+      relations,
+      where,
+    });
+
+    return nonFunctionalList;
   }
 }
 

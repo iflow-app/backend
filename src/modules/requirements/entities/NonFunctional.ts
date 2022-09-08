@@ -12,9 +12,9 @@ import { HouseOfQuality } from "./HouseOfQuality";
 import { Requirement } from "./Requirement";
 
 enum NonFunctionalPriorityEnum {
-  one = "one",
-  two = "two",
-  three = "three",
+  One = "one",
+  Two = "two",
+  Three = "three",
 }
 
 @Entity()
