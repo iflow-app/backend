@@ -9,8 +9,8 @@ interface IRequestParams {
 }
 
 interface IRequestBody {
-  nfr_links_id: number;
-  priority: NonFunctionalPriorityEnum;
+  nfr_links_id?: number;
+  priority?: NonFunctionalPriorityEnum;
 }
 
 interface IResponse {
