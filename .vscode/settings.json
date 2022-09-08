@@ -9,6 +9,7 @@
     "typeorm",
     "artifact",
     "requirement",
-    "houseOfQuality"
+    "houseOfQuality",
+    "filters"
   ]
 }

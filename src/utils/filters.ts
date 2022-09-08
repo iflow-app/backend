@@ -1,5 +1,3 @@
-import { ObjectLiteral } from "typeorm";
-
 import { IListRequirementDTO } from "../modules/requirements/dtos/IListRequirementDTO";
 
 export const nestedFilter = (
@@ -26,8 +24,6 @@ export const nestedFilter = (
       break;
   }
 
-  console.log(filters);
-
   return filters;
 };
 
@@ -40,5 +36,5 @@ export const requirementsFilters = ({
     ...(!!project_id && { project_id }),
   };
 
-  return filter ? { requirement: filter } : {};
+  return Object.keys(filter).length !== 0 ? { requirement: filter } : {};
 };
