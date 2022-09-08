@@ -1,10 +1,11 @@
 import { getRepository, ObjectLiteral, Repository } from "typeorm";
 
 import { AppError } from "../../../../errors/AppError";
+import { nestedFilter } from "../../../../utils/filters";
 import { ICreateBacklogRelationDTO } from "../../dtos/ICreateBacklogRelationDTO";
 import { IListFunctionalDTO } from "../../dtos/IListFunctionalDTO";
 import { IUpdateFunctionalDTO } from "../../dtos/IUpdateFunctionalDTO";
-import { Functional } from "../../entities/Functional";
+import { Functional, FunctionalLevelTypeEnum } from "../../entities/Functional";
 import { Requirement } from "../../entities/Requirement";
 import { IFunctionalRepository } from "../IFunctionalRepository";
 
@@ -96,43 +97,21 @@ class FunctionalRepository implements IFunctionalRepository {
     ];
 
     if (backlog) {
-      switch (level_type) {
-        case "user story":
-          break;
-        case "feature":
-          relations.push("backlog_relations");
-          break;
-        case "epic":
-          relations = relations.concat([
-            "backlog_relations",
-            "backlog_relations.backlog_relations",
-          ]);
-          break;
-        default:
-          relations = relations.concat([
-            "backlog_relations",
-            "backlog_relations.backlog_relations",
-          ]);
-          break;
-      }
+      relations = relations.concat(
+        nestedFilter(
+          "backlog_relations",
+          Object.values(FunctionalLevelTypeEnum).indexOf(level_type)
+        )
+      );
     }
 
-    if (requirement) {
-      if (backlog) {
-        switch (level_type) {
-          case "user story":
-            break;
-          case "feature":
-            relations.push("backlog_relations.requirement");
-            break;
-          default:
-            relations = relations.concat([
-              "backlog_relations.requirement",
-              "backlog_relations.backlog_relations.requirement",
-            ]);
-            break;
-        }
-      }
+    if (requirement && backlog) {
+      relations = relations.concat(
+        nestedFilter(
+          "backlog_relations.requirement",
+          Object.values(FunctionalLevelTypeEnum).indexOf(level_type)
+        )
+      );
     }
 
     const functionalList = await this.repository.find({
