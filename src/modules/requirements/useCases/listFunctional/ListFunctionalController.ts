@@ -10,7 +10,8 @@ class ListFunctionalController {
     request: Request<never, never, never, IListFunctionalDTO>,
     response: Response
   ): Promise<Response<Functional[]>> {
-    const { backlog, requirement, level_type } = request.query;
+    const { backlog, requirement, level_type, artifact_id, project_id } =
+      request.query;
 
     const listFunctionalUseCase = container.resolve(ListFunctionalUseCase);
 
@@ -18,6 +19,8 @@ class ListFunctionalController {
       backlog,
       requirement,
       level_type,
+      artifact_id,
+      project_id,
     });
 
     return response.status(200).json(functionalList);

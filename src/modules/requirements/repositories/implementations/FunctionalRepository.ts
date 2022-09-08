@@ -77,9 +77,23 @@ class FunctionalRepository implements IFunctionalRepository {
     backlog,
     requirement,
     level_type,
+    artifact_id,
+    project_id,
   }: IListFunctionalDTO): Promise<Functional[]> {
-    let relations: string[] = [];
-    const where: ObjectLiteral = {};
+    const requirementFilters = {
+      ...(!!artifact_id && { artifact_id }),
+      ...(!!project_id && { project_id }),
+    };
+    const where: ObjectLiteral = {
+      ...(!!requirementFilters && { requirement: requirementFilters }),
+      ...(!!level_type && { level_type }),
+    };
+
+    let relations: string[] = [
+      ...(Object.keys(requirementFilters).length > 0 || requirement
+        ? ["requirement"]
+        : []),
+    ];
 
     if (backlog) {
       switch (level_type) {
@@ -104,8 +118,6 @@ class FunctionalRepository implements IFunctionalRepository {
     }
 
     if (requirement) {
-      relations.push("requirement");
-
       if (backlog) {
         switch (level_type) {
           case "user story":
@@ -121,10 +133,6 @@ class FunctionalRepository implements IFunctionalRepository {
             break;
         }
       }
-    }
-
-    if (level_type) {
-      where.level_type = level_type;
     }
 
     const functionalList = await this.repository.find({
