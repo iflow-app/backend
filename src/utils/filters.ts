@@ -1,3 +1,7 @@
+import { ObjectLiteral } from "typeorm";
+
+import { IListRequirementDTO } from "../modules/requirements/dtos/IListRequirementDTO";
+
 export const nestedFilter = (
   targetField: string,
   keyLevel: number
@@ -25,4 +29,16 @@ export const nestedFilter = (
   console.log(filters);
 
   return filters;
+};
+
+export const requirementsFilters = ({
+  artifact_id,
+  project_id,
+}: IListRequirementDTO) => {
+  const filter = {
+    ...(!!artifact_id && { artifact_id }),
+    ...(!!project_id && { project_id }),
+  };
+
+  return filter ? { requirement: filter } : {};
 };

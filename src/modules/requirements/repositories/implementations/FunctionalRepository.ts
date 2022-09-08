@@ -1,7 +1,7 @@
 import { getRepository, ObjectLiteral, Repository } from "typeorm";
 
 import { AppError } from "../../../../errors/AppError";
-import { nestedFilter } from "../../../../utils/filters";
+import { nestedFilter, requirementsFilters } from "../../../../utils/filters";
 import { ICreateBacklogRelationDTO } from "../../dtos/ICreateBacklogRelationDTO";
 import { IListFunctionalDTO } from "../../dtos/IListFunctionalDTO";
 import { IUpdateFunctionalDTO } from "../../dtos/IUpdateFunctionalDTO";
@@ -81,12 +81,10 @@ class FunctionalRepository implements IFunctionalRepository {
     artifact_id,
     project_id,
   }: IListFunctionalDTO): Promise<Functional[]> {
-    const requirementFilters = {
-      ...(!!artifact_id && { artifact_id }),
-      ...(!!project_id && { project_id }),
-    };
+    const requirementFilters = requirementsFilters({ artifact_id, project_id });
+
     const where: ObjectLiteral = {
-      ...(!!requirementFilters && { requirement: requirementFilters }),
+      ...(!!requirementFilters && requirementFilters),
       ...(!!level_type && { level_type }),
     };
 
