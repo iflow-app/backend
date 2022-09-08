@@ -1,8 +1,8 @@
 import { Router } from "express";
 import multer from "multer";
 
-import uploadConfig from "../config/upload";
-import { CreateContentController } from "../modules/artifacts/useCases/createContent/CreateContentController";
+import uploadConfig from "../../../../config/upload";
+import { CreateContentController } from "../../../../modules/artifacts/useCases/createContent/CreateContentController";
 
 const contentRoutes = Router();
 

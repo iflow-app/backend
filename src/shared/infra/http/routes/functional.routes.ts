@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { CreateBacklogRelationController } from "../modules/requirements/useCases/createBacklogRelation/CreateBacklogRelationController";
-import { CreateFunctionalController } from "../modules/requirements/useCases/createFunctional/CreateFunctionalController";
-import { ListFunctionalController } from "../modules/requirements/useCases/listFunctional/ListFunctionalController";
-import { UpdateFunctionalController } from "../modules/requirements/useCases/updateFunctional/UpdateFunctionalController";
+import { CreateBacklogRelationController } from "../../../../modules/requirements/useCases/createBacklogRelation/CreateBacklogRelationController";
+import { CreateFunctionalController } from "../../../../modules/requirements/useCases/createFunctional/CreateFunctionalController";
+import { ListFunctionalController } from "../../../../modules/requirements/useCases/listFunctional/ListFunctionalController";
+import { UpdateFunctionalController } from "../../../../modules/requirements/useCases/updateFunctional/UpdateFunctionalController";
 
 const functionalRoutes = Router();
 

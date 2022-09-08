@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import { CreateNonFunctionalController } from "../modules/requirements/useCases/createNonFunctional/CreateNonFunctionalController";
-import { ListNonFunctionalController } from "../modules/requirements/useCases/listNonFunctional/ListNonFunctionalController";
-import { UpdateNonFunctionalController } from "../modules/requirements/useCases/updateNonFunctional/UpdateNonFunctionalController";
+import { CreateNonFunctionalController } from "../../../../modules/requirements/useCases/createNonFunctional/CreateNonFunctionalController";
+import { ListNonFunctionalController } from "../../../../modules/requirements/useCases/listNonFunctional/ListNonFunctionalController";
+import { UpdateNonFunctionalController } from "../../../../modules/requirements/useCases/updateNonFunctional/UpdateNonFunctionalController";
 
 const nonFunctionalRoutes = Router();
 

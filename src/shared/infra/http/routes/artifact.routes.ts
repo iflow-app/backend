@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { CreateArtifactController } from "../modules/artifacts/useCases/createArtifact/CreateArtifactController";
+import { CreateArtifactController } from "../../../../modules/artifacts/useCases/createArtifact/CreateArtifactController";
 
 const artifactRoutes = Router();
 

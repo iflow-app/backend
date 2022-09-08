@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { CreateHouseOfQualityController } from "../modules/requirements/useCases/createHouseOfQuality/CreateHouseOfQualityController";
+import { CreateHouseOfQualityController } from "../../../../modules/requirements/useCases/createHouseOfQuality/CreateHouseOfQualityController";
 
 const houseOfQualityRoutes = Router();
 
