@@ -16,6 +16,8 @@ import { NonFunctionalRepository } from "../../modules/requirements/repositories
 import { RequirementRepository } from "../../modules/requirements/repositories/implementations/RequirementRepository";
 import { INonFunctionalRepository } from "../../modules/requirements/repositories/INonFunctionalRepository";
 import { IRequirementRepository } from "../../modules/requirements/repositories/IRequirementRepository";
+import { ICheckpointRepository } from "../../modules/verifications/repositories/ICheckpointRepository";
+import { CheckpointRepository } from "../../modules/verifications/repositories/implementations/CheckpointRepository";
 import { VerificationRepository } from "../../modules/verifications/repositories/implementations/VerificationRepository";
 import { IVerificationRepository } from "../../modules/verifications/repositories/IVerificationRepository";
 
@@ -59,4 +61,9 @@ container.registerSingleton<IHouseOfQualityRepository>(
 container.registerSingleton<IVerificationRepository>(
   "VerificationRepository",
   VerificationRepository
+);
+
+container.registerSingleton<ICheckpointRepository>(
+  "CheckpointRepository",
+  CheckpointRepository
 );

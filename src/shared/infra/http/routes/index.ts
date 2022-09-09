@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { artifactRoutes } from "./artifact.routes";
 import { authenticateRoutes } from "./authenticate.routes";
+import { checkpointRoutes } from "./checkpoint.routes";
 import { contentRoutes } from "./content.routes";
 import { functionalRoutes } from "./functional.routes";
 import { houseOfQualityRoutes } from "./houseOfQuality.routes";
@@ -13,6 +14,7 @@ import { verificationRoutes } from "./verification.routes";
 const router = Router();
 
 router.use("/artifact", artifactRoutes);
+router.use("/checkpoint", checkpointRoutes);
 router.use("/content", contentRoutes);
 router.use("/functional", functionalRoutes);
 router.use("/house-of-quality", houseOfQualityRoutes);
