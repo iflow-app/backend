@@ -1,7 +1,8 @@
-import { getRepository, Repository } from "typeorm";
+import { getRepository, ObjectLiteral, Repository } from "typeorm";
 
 import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateVerificationDTO } from "../../dtos/ICreateVerificationDTO";
+import { IListVerificationDTO } from "../../dtos/IListVerificationDTO";
 import { Verification } from "../../entities/Verification";
 import { IVerificationRepository } from "../IVerificationRepository";
 
@@ -25,6 +26,28 @@ class VerificationRepository implements IVerificationRepository {
     } catch {
       throw new AppError("Data malformed to create a Verification!");
     }
+  }
+
+  async list({
+    checkpoints,
+    verification_id,
+    artifact_id,
+    project_id,
+  }: IListVerificationDTO): Promise<Verification[]> {
+    const where: ObjectLiteral = {
+      ...(!!verification_id && { verification_id }),
+      ...(!!artifact_id && { artifact_id }),
+      ...(!!project_id && { artifact: { artifact_id } }),
+    };
+
+    const relations = [...(checkpoints ? ["checkpoints"] : [])];
+
+    const verifications = await this.repository.find({
+      relations,
+      where,
+    });
+
+    return verifications;
   }
 }
 
