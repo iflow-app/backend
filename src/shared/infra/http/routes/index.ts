@@ -8,6 +8,7 @@ import { houseOfQualityRoutes } from "./houseOfQuality.routes";
 import { nonFunctionalRoutes } from "./nonFunctional.routes";
 import { projectRoutes } from "./project.routes";
 import { userRoutes } from "./user.routes";
+import { verificationRoutes } from "./verification.routes";
 
 const router = Router();
 
@@ -18,6 +19,7 @@ router.use("/house-of-quality", houseOfQualityRoutes);
 router.use("/non-functional", nonFunctionalRoutes);
 router.use("/project", projectRoutes);
 router.use("/user", userRoutes);
+router.use("/verification", verificationRoutes);
 
 router.use(authenticateRoutes);
 

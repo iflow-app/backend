@@ -11,6 +11,7 @@
     "requirement",
     "houseOfQuality",
     "filters",
-    "error"
+    "error",
+    "verification"
   ]
 }
