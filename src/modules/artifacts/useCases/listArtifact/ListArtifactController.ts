@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
+import { IArtifactResponseDTO } from "../../dtos/IArtifactResponseDTO";
 import { IListArtifactDTO } from "../../dtos/IListArtifactDTO";
-import { Artifact } from "../../entities/Artifact";
 import { ListArtifactUseCase } from "./ListArtifactUseCase";
 
 class ListArtifactController {
   async handle(
     request: Request<never, never, never, IListArtifactDTO>,
     response: Response
-  ): Promise<Response<Artifact[]>> {
+  ): Promise<Response<IArtifactResponseDTO[]>> {
     const {
       artifact_id,
       project_id,

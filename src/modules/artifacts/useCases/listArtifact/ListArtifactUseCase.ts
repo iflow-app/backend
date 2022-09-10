@@ -1,7 +1,8 @@
 import { inject, injectable } from "tsyringe";
 
+import { IArtifactResponseDTO } from "../../dtos/IArtifactResponseDTO";
 import { IListArtifactDTO } from "../../dtos/IListArtifactDTO";
-import { Artifact } from "../../entities/Artifact";
+import { ArtifactMap } from "../../mapper/ArtifactMap";
 import { IArtifactRepository } from "../../repositories/IArtifactRepository";
 
 @injectable()
@@ -11,10 +12,14 @@ class ListArtifactUseCase {
     private artifactRepository: IArtifactRepository
   ) {}
 
-  execute(options: IListArtifactDTO): Promise<Artifact[]> {
-    const artifacts = this.artifactRepository.list(options);
+  async execute(options: IListArtifactDTO): Promise<IArtifactResponseDTO[]> {
+    const artifacts = await this.artifactRepository.list(options);
 
-    return artifacts;
+    const artifactsResponse = artifacts.map((artifact) =>
+      ArtifactMap.toDTO(artifact)
+    );
+
+    return artifactsResponse;
   }
 }
 
