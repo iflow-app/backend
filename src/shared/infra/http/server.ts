@@ -8,10 +8,13 @@ import "../typeorm";
 
 import "../../container";
 import { AppError } from "../../errors/AppError";
+import upload from "../../../config/upload";
 
 const app = express();
 
 app.use(express.json());
+
+app.use("/files/content/", express.static(`${upload.staticFolder}/content`));
 
 app.use(router);
 

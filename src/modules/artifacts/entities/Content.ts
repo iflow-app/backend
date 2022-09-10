@@ -1,3 +1,4 @@
+import { Expose } from "class-transformer";
 import {
   Entity,
   Column,
@@ -26,6 +27,16 @@ class Content {
   @ManyToOne(() => Artifact, { nullable: false })
   @JoinColumn({ name: "artifact_id" })
   artifact: Artifact;
+
+  @Expose({ name: "content_url" })
+  content_url(): string {
+    switch (process.env.disk) {
+      case "local":
+        return `${process.env.APP_API_URL}/files/content/${this.path}`;
+      default:
+        return null;
+    }
+  }
 
   constructor() {
     if (!this.content_id) {
