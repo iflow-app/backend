@@ -9,6 +9,7 @@ interface IFunctionalRepository {
   update(data: IUpdateFunctionalDTO): Promise<boolean>;
   addBacklogRelation(data: ICreateBacklogRelationDTO): Promise<Functional>;
   list(options: IListFunctionalDTO): Promise<Functional[]>;
+  isUserStory(functional_id: number): Promise<boolean>;
 }
 
 export { IFunctionalRepository };

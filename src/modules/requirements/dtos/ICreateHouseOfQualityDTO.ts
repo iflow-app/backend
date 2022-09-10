@@ -1,6 +1,6 @@
 interface ICreateHouseOfQualityDTO {
-  functional_id: string;
-  nfunctional_id: string;
+  functional_id: number;
+  nfunctional_id: number;
   weight: number;
 }
 

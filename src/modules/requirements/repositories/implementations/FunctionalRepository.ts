@@ -119,6 +119,14 @@ class FunctionalRepository implements IFunctionalRepository {
 
     return functionalList;
   }
+
+  async isUserStory(functional_id: number): Promise<boolean> {
+    const functional = await this.repository.findOne({
+      where: { functional_id, level_type: FunctionalLevelTypeEnum.UserStory },
+    });
+
+    return !!functional;
+  }
 }
 
 export { FunctionalRepository };

@@ -98,6 +98,14 @@ class NonFunctionalRepository implements INonFunctionalRepository {
 
     return nonFunctionalList;
   }
+
+  async isHighPriority(nfunctional_id: number): Promise<boolean> {
+    const nonFunctional = await this.repository.findOne({
+      where: { nfunctional_id, priority: NonFunctionalPriorityEnum.Three },
+    });
+
+    return !!nonFunctional;
+  }
 }
 
 export { NonFunctionalRepository };
