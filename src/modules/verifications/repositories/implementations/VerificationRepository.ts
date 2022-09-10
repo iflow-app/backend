@@ -30,6 +30,7 @@ class VerificationRepository implements IVerificationRepository {
 
   async list({
     checkpoints,
+    artifact,
     verification_id,
     artifact_id,
     project_id,
@@ -40,7 +41,10 @@ class VerificationRepository implements IVerificationRepository {
       ...(!!project_id && { artifact: { artifact_id } }),
     };
 
-    const relations = [...(checkpoints ? ["checkpoints"] : [])];
+    const relations = [
+      ...(checkpoints ? ["checkpoints"] : []),
+      ...(artifact ? ["artifact"] : []),
+    ];
 
     const verifications = await this.repository.find({
       relations,

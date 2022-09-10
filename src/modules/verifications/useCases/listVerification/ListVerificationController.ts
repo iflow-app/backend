@@ -10,13 +10,14 @@ class ListVerificationController {
     request: Request<never, never, never, IListVerificationDTO>,
     response: Response
   ): Promise<Response<Verification[]>> {
-    const { checkpoints, artifact_id, project_id, verification_id } =
+    const { checkpoints, artifact, artifact_id, project_id, verification_id } =
       request.query;
 
     const listVerificationsUseCase = container.resolve(ListVerificationUseCase);
 
     const verifications = await listVerificationsUseCase.execute({
       checkpoints,
+      artifact,
       artifact_id,
       project_id,
       verification_id,
