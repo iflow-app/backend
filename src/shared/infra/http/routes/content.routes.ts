@@ -6,7 +6,7 @@ import { CreateContentController } from "../../../../modules/artifacts/useCases/
 
 const contentRoutes = Router();
 
-const uploadFile = multer(uploadConfig.upload("./static/content"));
+const uploadFile = multer(uploadConfig);
 const createContentController = new CreateContentController();
 
 contentRoutes.post(

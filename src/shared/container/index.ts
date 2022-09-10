@@ -20,6 +20,8 @@ import { ICheckpointRepository } from "../../modules/verifications/repositories/
 import { CheckpointRepository } from "../../modules/verifications/repositories/implementations/CheckpointRepository";
 import { VerificationRepository } from "../../modules/verifications/repositories/implementations/VerificationRepository";
 import { IVerificationRepository } from "../../modules/verifications/repositories/IVerificationRepository";
+import { LocalStorageProvider } from "./providers/implementations/LocalStorageProvider";
+import { IStorageProvider } from "./providers/IStorageProvider";
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
 
@@ -66,4 +68,13 @@ container.registerSingleton<IVerificationRepository>(
 container.registerSingleton<ICheckpointRepository>(
   "CheckpointRepository",
   CheckpointRepository
+);
+
+const diskStorage = {
+  local: LocalStorageProvider,
+};
+
+container.registerSingleton<IStorageProvider>(
+  "StorageProvider",
+  diskStorage[process.env.disk]
 );
