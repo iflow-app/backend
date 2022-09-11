@@ -14,6 +14,7 @@
     "error",
     "verification",
     "checkpoint",
-    "provider/storage"
+    "provider/storage",
+    "provider/date"
   ]
 }

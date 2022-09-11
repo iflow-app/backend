@@ -22,6 +22,8 @@ import { ICheckpointRepository } from "../../modules/verifications/repositories/
 import { CheckpointRepository } from "../../modules/verifications/repositories/implementations/CheckpointRepository";
 import { VerificationRepository } from "../../modules/verifications/repositories/implementations/VerificationRepository";
 import { IVerificationRepository } from "../../modules/verifications/repositories/IVerificationRepository";
+import { IDateProvider } from "./providers/DateProvider/IDateProvider";
+import { DaysjDateProvider } from "./providers/DateProvider/implementations/DayjsDateProvider";
 import { LocalStorageProvider } from "./providers/StorageProvider/implementations/LocalStorageProvider";
 import { IStorageProvider } from "./providers/StorageProvider/IStorageProvider";
 
@@ -84,4 +86,9 @@ container.registerSingleton<IStorageProvider>(
 container.registerSingleton<IUserTokenRepository>(
   "UserTokenRepository",
   UserTokenRepository
+);
+
+container.registerSingleton<IDateProvider>(
+  "DayjsDateProvider",
+  DaysjDateProvider
 );
