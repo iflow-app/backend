@@ -13,6 +13,7 @@
     "filters",
     "error",
     "verification",
-    "checkpoint"
+    "checkpoint",
+    "provider/storage"
   ]
 }

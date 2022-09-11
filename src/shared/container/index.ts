@@ -2,8 +2,10 @@ import { container } from "tsyringe";
 
 import { ProjectRepository } from "../../modules/accounts/repositories/implementations/ProjectRepository";
 import { UserRepository } from "../../modules/accounts/repositories/implementations/UserRepository";
+import { UserTokenRepository } from "../../modules/accounts/repositories/implementations/UserTokenRepository";
 import { IProjectRepository } from "../../modules/accounts/repositories/IProjectRepository";
 import { IUserRepository } from "../../modules/accounts/repositories/IUserRepository";
+import { IUserTokenRepository } from "../../modules/accounts/repositories/IUserTokenRepository";
 import { IArtifactRepository } from "../../modules/artifacts/repositories/IArtifactRepository";
 import { IContentRepository } from "../../modules/artifacts/repositories/IContentRepository";
 import { ArtifactRepository } from "../../modules/artifacts/repositories/implementations/ArtifactRepository";
@@ -20,8 +22,8 @@ import { ICheckpointRepository } from "../../modules/verifications/repositories/
 import { CheckpointRepository } from "../../modules/verifications/repositories/implementations/CheckpointRepository";
 import { VerificationRepository } from "../../modules/verifications/repositories/implementations/VerificationRepository";
 import { IVerificationRepository } from "../../modules/verifications/repositories/IVerificationRepository";
-import { LocalStorageProvider } from "./providers/implementations/LocalStorageProvider";
-import { IStorageProvider } from "./providers/IStorageProvider";
+import { LocalStorageProvider } from "./providers/StorageProvider/implementations/LocalStorageProvider";
+import { IStorageProvider } from "./providers/StorageProvider/IStorageProvider";
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
 
@@ -77,4 +79,9 @@ const diskStorage = {
 container.registerSingleton<IStorageProvider>(
   "StorageProvider",
   diskStorage[process.env.disk]
+);
+
+container.registerSingleton<IUserTokenRepository>(
+  "UserTokenRepository",
+  UserTokenRepository
 );

@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { IStorageProvider } from "../../../../shared/container/providers/IStorageProvider";
+import { IStorageProvider } from "../../../../shared/container/providers/StorageProvider/IStorageProvider";
 import { IContentResponseDTO } from "../../dtos/IContentResponseDTO";
 import { ICreateContentDTO } from "../../dtos/ICreateContentDTO";
 import { ContentMap } from "../../mapper/ContentMap";
