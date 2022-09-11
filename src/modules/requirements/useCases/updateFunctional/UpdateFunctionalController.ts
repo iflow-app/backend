@@ -13,10 +13,11 @@ interface IResponse {
 
 class UpdateFunctionalController {
   async handle(
-    request: Request<IRequestFunctionalUpdate>,
+    request: Request,
     response: Response
   ): Promise<Response<IResponse>> {
-    const { functional_id } = request.params;
+    const { functional_id } =
+      request.params as unknown as IRequestFunctionalUpdate;
     const { level_type } = request.body;
 
     const updateFunctionalUseCase = container.resolve(UpdateFunctionalUseCase);

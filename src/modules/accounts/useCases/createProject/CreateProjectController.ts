@@ -5,7 +5,8 @@ import { CreateProjectUseCase } from "./CreateProjectUseCase";
 
 class CreateProjectController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, objective, description, user_id } = request.body;
+    const user_id = request.user.id;
+    const { name, objective, description } = request.body;
 
     const createProjectUseCase = container.resolve(CreateProjectUseCase);
 

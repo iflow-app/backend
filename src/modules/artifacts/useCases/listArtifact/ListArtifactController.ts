@@ -7,7 +7,7 @@ import { ListArtifactUseCase } from "./ListArtifactUseCase";
 
 class ListArtifactController {
   async handle(
-    request: Request<never, never, never, IListArtifactDTO>,
+    request: Request,
     response: Response
   ): Promise<Response<IArtifactResponseDTO[]>> {
     const {
@@ -18,7 +18,7 @@ class ListArtifactController {
       project,
       requirements,
       verifications,
-    } = request.query;
+    } = request.query as unknown as IListArtifactDTO;
 
     const listArtifactUseCase = container.resolve(ListArtifactUseCase);
 

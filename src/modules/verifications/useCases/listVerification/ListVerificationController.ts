@@ -7,11 +7,11 @@ import { ListVerificationUseCase } from "./ListVerificationUseCase";
 
 class ListVerificationController {
   async handle(
-    request: Request<never, never, never, IListVerificationDTO>,
+    request: Request,
     response: Response
   ): Promise<Response<Verification[]>> {
     const { checkpoints, artifact, artifact_id, project_id, verification_id } =
-      request.query;
+      request.query as unknown as IListVerificationDTO;
 
     const listVerificationsUseCase = container.resolve(ListVerificationUseCase);
 

@@ -4,22 +4,32 @@ import { CreateBacklogRelationController } from "../../../../modules/requirement
 import { CreateFunctionalController } from "../../../../modules/requirements/useCases/createFunctional/CreateFunctionalController";
 import { ListFunctionalController } from "../../../../modules/requirements/useCases/listFunctional/ListFunctionalController";
 import { UpdateFunctionalController } from "../../../../modules/requirements/useCases/updateFunctional/UpdateFunctionalController";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const functionalRoutes = Router();
 
 const createFunctionalController = new CreateFunctionalController();
-functionalRoutes.post("/", createFunctionalController.handle);
+functionalRoutes.post(
+  "/",
+  ensureAuthenticated,
+  createFunctionalController.handle
+);
 
 const updateFunctionalController = new UpdateFunctionalController();
-functionalRoutes.patch("/:functional_id", updateFunctionalController.handle);
+functionalRoutes.patch(
+  "/:functional_id",
+  ensureAuthenticated,
+  updateFunctionalController.handle
+);
 
 const createBacklogRelationController = new CreateBacklogRelationController();
 functionalRoutes.patch(
   "/:functional_id/backlog",
+  ensureAuthenticated,
   createBacklogRelationController.handle
 );
 
 const listFunctionalController = new ListFunctionalController();
-functionalRoutes.get("/", listFunctionalController.handle);
+functionalRoutes.get("/", ensureAuthenticated, listFunctionalController.handle);
 
 export { functionalRoutes };

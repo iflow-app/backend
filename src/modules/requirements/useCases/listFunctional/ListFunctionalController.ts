@@ -7,11 +7,11 @@ import { ListFunctionalUseCase } from "./ListFunctionalUseCase";
 
 class ListFunctionalController {
   async handle(
-    request: Request<never, never, never, IListFunctionalDTO>,
+    request: Request,
     response: Response
   ): Promise<Response<Functional[]>> {
     const { backlog, requirement, level_type, artifact_id, project_id } =
-      request.query;
+      request.query as unknown as IListFunctionalDTO;
 
     const listFunctionalUseCase = container.resolve(ListFunctionalUseCase);
 

@@ -7,11 +7,11 @@ import { ListNonFunctionalUseCase } from "./ListNonFunctionalUseCase";
 
 class ListNonFunctionalController {
   async handle(
-    request: Request<never, never, never, IListNonFunctionalDTO>,
+    request: Request,
     response: Response
   ): Promise<Response<NonFunctional[]>> {
     const { nfr, priority, requirement, artifact_id, project_id } =
-      request.query;
+      request.query as unknown as IListNonFunctionalDTO;
 
     const listNonFunctionalUseCase = container.resolve(
       ListNonFunctionalUseCase

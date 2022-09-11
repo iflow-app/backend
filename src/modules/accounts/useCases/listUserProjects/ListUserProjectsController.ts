@@ -3,16 +3,9 @@ import { container } from "tsyringe";
 
 import { ListUserProjectsUseCase } from "./ListUserProjectsUseCase";
 
-interface IRequestListUserProjectsRoute {
-  user_id: string;
-}
-
 class ListUserProjectController {
-  async handle(
-    request: Request<IRequestListUserProjectsRoute>,
-    response: Response
-  ): Promise<Response> {
-    const { user_id } = request.params;
+  async handle(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
 
     const listUserProjectsUseCase = container.resolve(ListUserProjectsUseCase);
 

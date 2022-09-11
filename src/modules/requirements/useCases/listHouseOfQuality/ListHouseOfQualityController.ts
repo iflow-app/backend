@@ -7,10 +7,11 @@ import { ListHouseOfQualityUseCase } from "./ListHouseOfQualityUseCase";
 
 class ListHouseOfQualityController {
   async handle(
-    request: Request<never, never, never, IListHouseOfQualityDTO>,
+    request: Request,
     response: Response
   ): Promise<Response<HouseOfQuality[]>> {
-    const { functional_id, nfunctional_id, weight } = request.query;
+    const { functional_id, nfunctional_id, weight } =
+      request.query as unknown as IListHouseOfQualityDTO;
 
     const listHouseOfQualityUseCase = container.resolve(
       ListHouseOfQualityUseCase
