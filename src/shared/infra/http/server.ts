@@ -1,3 +1,4 @@
+import cors from "cors";
 import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
@@ -13,6 +14,12 @@ import upload from "../../../config/upload";
 const app = express();
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use("/files/content/", express.static(`${upload.staticFolder}/content`));
 
