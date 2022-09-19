@@ -24,6 +24,8 @@ import { VerificationRepository } from "../../modules/verifications/repositories
 import { IVerificationRepository } from "../../modules/verifications/repositories/IVerificationRepository";
 import { IDateProvider } from "./providers/DateProvider/IDateProvider";
 import { DaysjDateProvider } from "./providers/DateProvider/implementations/DayjsDateProvider";
+import { DijkstraProvider } from "./providers/SingleShortestPathProvider/implementations/DijkstraProvider";
+import { ISingleShortestPathProvider } from "./providers/SingleShortestPathProvider/ISingleShortestPathProvider";
 import { LocalStorageProvider } from "./providers/StorageProvider/implementations/LocalStorageProvider";
 import { IStorageProvider } from "./providers/StorageProvider/IStorageProvider";
 
@@ -91,4 +93,9 @@ container.registerSingleton<IUserTokenRepository>(
 container.registerSingleton<IDateProvider>(
   "DayjsDateProvider",
   DaysjDateProvider
+);
+
+container.registerSingleton<ISingleShortestPathProvider>(
+  "DijkstraProvider",
+  DijkstraProvider
 );
