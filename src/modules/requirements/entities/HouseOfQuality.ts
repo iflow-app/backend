@@ -6,10 +6,10 @@ import { NonFunctional } from "./NonFunctional";
 @Entity()
 class HouseOfQuality {
   @PrimaryColumn()
-  functional_id: string;
+  functional_id: number;
 
   @PrimaryColumn()
-  nfunctional_id: string;
+  nfunctional_id: number;
 
   @Column("smallint")
   weight: number;
