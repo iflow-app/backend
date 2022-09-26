@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { CreateBacklogRelationController } from "../../../../modules/requirements/useCases/createBacklogRelation/CreateBacklogRelationController";
 import { CreateFunctionalController } from "../../../../modules/requirements/useCases/createFunctional/CreateFunctionalController";
+import { GenerateMVPController } from "../../../../modules/requirements/useCases/generateMVP/GenerateMVPController";
 import { ListFunctionalController } from "../../../../modules/requirements/useCases/listFunctional/ListFunctionalController";
 import { UpdateFunctionalController } from "../../../../modules/requirements/useCases/updateFunctional/UpdateFunctionalController";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
@@ -31,5 +32,8 @@ functionalRoutes.patch(
 
 const listFunctionalController = new ListFunctionalController();
 functionalRoutes.get("/", ensureAuthenticated, listFunctionalController.handle);
+
+const generateMVPController = new GenerateMVPController();
+functionalRoutes.get("/mvp", generateMVPController.handle);
 
 export { functionalRoutes };
