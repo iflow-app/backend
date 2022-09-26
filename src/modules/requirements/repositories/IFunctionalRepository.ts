@@ -7,7 +7,7 @@ import { Requirement } from "../entities/Requirement";
 interface IFunctionalRepository {
   create(requirement: Requirement): Promise<Functional>;
   update(data: IUpdateFunctionalDTO): Promise<boolean>;
-  addBacklogRelation(data: ICreateBacklogRelationDTO): Promise<Functional>;
+  addBacklogRelation(data: ICreateBacklogRelationDTO[]): Promise<void>;
   list(options: IListFunctionalDTO): Promise<Functional[]>;
   isUserStory(functional_id: number): Promise<boolean>;
 }

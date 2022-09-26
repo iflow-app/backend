@@ -1,6 +1,11 @@
-interface ICreateBacklogRelationDTO {
-  functional_id1: number;
-  functional_id2: number;
+interface IFeatureRelation {
+  feature_id: number;
+  userStories: Array<number>;
 }
 
-export { ICreateBacklogRelationDTO };
+interface ICreateBacklogRelationDTO {
+  epic_id: number;
+  features: IFeatureRelation[];
+}
+
+export { ICreateBacklogRelationDTO, IFeatureRelation };

@@ -46,32 +46,55 @@ class FunctionalRepository implements IFunctionalRepository {
     }
   }
 
-  async addBacklogRelation({
-    functional_id1,
-    functional_id2,
-  }: ICreateBacklogRelationDTO): Promise<Functional> {
-    const [functional1, functional2] = await this.repository.findByIds(
-      [functional_id1, functional_id2],
-      { relations: ["backlog_relations"], order: { level_type: "ASC" } }
+  async addBacklogRelation(data: ICreateBacklogRelationDTO[]): Promise<void> {
+    await Promise.all(
+      data.map(async (epic) => {
+        await this.update({
+          functional_id: epic.epic_id,
+          level_type: FunctionalLevelTypeEnum.Epic,
+        });
+
+        const epicRow = await this.repository.findOne(epic.epic_id, {
+          relations: ["backlog_relations"],
+        });
+
+        await Promise.all(
+          epic.features.map(async ({ feature_id, userStories }) => {
+            await this.update({
+              functional_id: feature_id,
+              level_type: FunctionalLevelTypeEnum.Feature,
+            });
+
+            const featureRow = await this.repository.findOne(feature_id, {
+              relations: ["backlog_relations"],
+            });
+
+            epicRow.backlog_relations.push(featureRow);
+            await Promise.all(
+              userStories.map(async (userStoryId) => {
+                await this.update({
+                  functional_id: userStoryId,
+                  level_type: FunctionalLevelTypeEnum.UserStory,
+                });
+
+                const userStoryRow = await this.repository.findOne(
+                  userStoryId,
+                  {
+                    relations: ["backlog_relations"],
+                  }
+                );
+
+                featureRow.backlog_relations.push(userStoryRow);
+              })
+            );
+
+            await this.repository.save(featureRow);
+          })
+        );
+
+        await this.repository.save(epicRow);
+      })
     );
-
-    if (!functional1 || !functional2) {
-      throw new AppError("One or both passed ids does not exists!");
-    }
-
-    if (
-      functional1.backlog_relations.some(
-        (functional) => functional.functional_id === functional_id2
-      )
-    ) {
-      throw new AppError("Relation already exists!");
-    }
-
-    functional1.backlog_relations.push(functional2);
-
-    const functional = await this.repository.save(functional1);
-
-    return functional;
   }
 
   async list({
