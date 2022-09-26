@@ -1,7 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
 import { ICreateBacklogRelationDTO } from "../../dtos/ICreateBacklogRelationDTO";
-import { Functional } from "../../entities/Functional";
 import { IFunctionalRepository } from "../../repositories/IFunctionalRepository";
 
 @injectable()

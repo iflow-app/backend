@@ -8,7 +8,6 @@ import {
 import { v4 as uuidV4 } from "uuid";
 
 import { Project } from "../../accounts/entities/Project";
-import { Artifact } from "../../artifacts/entities/Artifact";
 
 @Entity()
 class Requirement {
@@ -29,13 +28,6 @@ class Requirement {
 
   @Column()
   project_id: string;
-
-  @Column({ nullable: true })
-  artifact_id?: string;
-
-  @ManyToOne(() => Artifact, { nullable: true })
-  @JoinColumn({ name: "artifact_id", referencedColumnName: "artifact_id" })
-  artifact: Artifact;
 
   @ManyToOne(() => Project, { nullable: false })
   @JoinColumn({ name: "project_id" })

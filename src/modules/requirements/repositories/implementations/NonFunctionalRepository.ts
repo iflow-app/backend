@@ -2,13 +2,13 @@ import { getRepository, ObjectLiteral, Repository } from "typeorm";
 
 import { AppError } from "../../../../shared/errors/AppError";
 import { nestedFilter, requirementsFilters } from "../../../../utils/filters";
+import { ICreateNonFunctionalDTO } from "../../dtos/ICreateNonFunctionaDTO";
 import { IListNonFunctionalDTO } from "../../dtos/IListNonFunctionalDTO";
 import { IUpdateNonFunctionalDTO } from "../../dtos/IUpdateNonFunctionalDTO";
 import {
   NonFunctional,
   NonFunctionalPriorityEnum,
 } from "../../entities/NonFunctional";
-import { Requirement } from "../../entities/Requirement";
 import { INonFunctionalRepository } from "../INonFunctionalRepository";
 
 class NonFunctionalRepository implements INonFunctionalRepository {
@@ -18,8 +18,11 @@ class NonFunctionalRepository implements INonFunctionalRepository {
     this.repository = getRepository(NonFunctional);
   }
 
-  async create(requirement: Requirement): Promise<NonFunctional> {
-    const nonFunctional = this.repository.create({});
+  async create({
+    requirement,
+    artifact_id,
+  }: ICreateNonFunctionalDTO): Promise<NonFunctional> {
+    const nonFunctional = this.repository.create({ artifact_id });
 
     nonFunctional.requirement = requirement;
 
@@ -60,11 +63,12 @@ class NonFunctionalRepository implements INonFunctionalRepository {
     artifact_id,
     project_id,
   }: IListNonFunctionalDTO): Promise<NonFunctional[]> {
-    const requirementFilters = requirementsFilters({ artifact_id, project_id });
+    const requirementFilters = requirementsFilters({ project_id });
 
     const where: ObjectLiteral = {
       ...(!!requirementFilters && requirementFilters),
       ...(!!priority && { priority }),
+      ...(!!artifact_id && { artifact_id }),
     };
 
     let relations: string[] = [

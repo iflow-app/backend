@@ -5,6 +5,7 @@ interface IListNonFunctionalDTO extends IListRequirementDTO {
   requirement?: boolean;
   nfr?: boolean;
   priority?: NonFunctionalPriorityEnum;
+  artifact_id?: string;
 }
 
 export { IListNonFunctionalDTO };

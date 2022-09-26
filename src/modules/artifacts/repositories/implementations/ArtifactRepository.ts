@@ -51,7 +51,14 @@ class ArtifactRepository implements IArtifactRepository {
       ...(contents ? ["contents"] : []),
       ...(evolve ? ["evolve"] : []),
       ...(project ? ["project"] : []),
-      ...(requirements ? ["requirements"] : []),
+      ...(requirements
+        ? [
+            "functionals",
+            "functionals.requirement",
+            "non_functionals",
+            "non_functionals.requirement",
+          ]
+        : []),
       ...(verifications ? ["verifications"] : []),
     ];
 

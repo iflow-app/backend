@@ -12,7 +12,8 @@ class ArtifactMap {
     project,
     contents,
     evolve,
-    requirements,
+    functionals,
+    non_functionals,
     verifications,
   }: Artifact): IArtifactResponseDTO {
     const contentsResponse =
@@ -25,7 +26,8 @@ class ArtifactMap {
       project,
       contents: contentsResponse,
       evolve,
-      requirements,
+      functionals,
+      non_functionals,
       verifications,
     });
 

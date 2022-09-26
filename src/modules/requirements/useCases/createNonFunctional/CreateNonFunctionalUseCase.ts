@@ -33,9 +33,10 @@ class CreateNonFunctionalUseCase {
       artifact_id,
     });
 
-    const nonFunctional = await this.nonFunctionalRepository.create(
-      requirement
-    );
+    const nonFunctional = await this.nonFunctionalRepository.create({
+      requirement,
+      artifact_id,
+    });
 
     return nonFunctional;
   }

@@ -66,10 +66,12 @@ class SeedsUseCase {
       const newRequirement = await this.requirementRepository.create({
         ...requirement,
         project_id,
-        artifact_id,
       });
 
-      await this.functionalRepository.create(newRequirement);
+      await this.functionalRepository.create({
+        requirement: newRequirement,
+        artifact_id,
+      });
     }
 
     await this.functionalRepository.addBacklogRelation(backlogSeeds);
@@ -78,10 +80,12 @@ class SeedsUseCase {
       const newRequirement = await this.requirementRepository.create({
         ...requirement,
         project_id,
-        artifact_id,
       });
 
-      await this.nonFunctionalRepository.create(newRequirement);
+      await this.nonFunctionalRepository.create({
+        requirement: newRequirement,
+        artifact_id,
+      });
     }
 
     Promise.all(

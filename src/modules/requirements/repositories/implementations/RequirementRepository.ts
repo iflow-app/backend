@@ -18,7 +18,6 @@ class RequirementRepository implements IRequirementRepository {
     who,
     why,
     project_id,
-    artifact_id,
   }: ICreateRequirementDTO): Promise<Requirement> {
     const requirement = this.repository.create({
       name,
@@ -26,7 +25,6 @@ class RequirementRepository implements IRequirementRepository {
       who,
       why,
       project_id,
-      artifact_id,
     });
 
     try {

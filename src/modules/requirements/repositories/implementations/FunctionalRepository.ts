@@ -3,10 +3,10 @@ import { getRepository, ObjectLiteral, Repository } from "typeorm";
 import { AppError } from "../../../../shared/errors/AppError";
 import { nestedFilter, requirementsFilters } from "../../../../utils/filters";
 import { ICreateBacklogRelationDTO } from "../../dtos/ICreateBacklogRelationDTO";
+import { ICreateFunctionalDTO } from "../../dtos/ICreateFunctionalDTO";
 import { IListFunctionalDTO } from "../../dtos/IListFunctionalDTO";
 import { IUpdateFunctionalDTO } from "../../dtos/IUpdateFunctionalDTO";
 import { Functional, FunctionalLevelTypeEnum } from "../../entities/Functional";
-import { Requirement } from "../../entities/Requirement";
 import { IFunctionalRepository } from "../IFunctionalRepository";
 
 class FunctionalRepository implements IFunctionalRepository {
@@ -16,8 +16,11 @@ class FunctionalRepository implements IFunctionalRepository {
     this.repository = getRepository(Functional);
   }
 
-  async create(requirement: Requirement): Promise<Functional> {
-    const functional = this.repository.create({});
+  async create({
+    requirement,
+    artifact_id,
+  }: ICreateFunctionalDTO): Promise<Functional> {
+    const functional = this.repository.create({ artifact_id });
 
     functional.requirement = requirement;
 
@@ -104,11 +107,12 @@ class FunctionalRepository implements IFunctionalRepository {
     artifact_id,
     project_id,
   }: IListFunctionalDTO): Promise<Functional[]> {
-    const requirementFilters = requirementsFilters({ artifact_id, project_id });
+    const requirementFilters = requirementsFilters({ project_id });
 
     const where: ObjectLiteral = {
       ...(!!requirementFilters && requirementFilters),
       ...(!!level_type && { level_type }),
+      ...(!!artifact_id && { artifact_id }),
     };
 
     let relations: string[] = [

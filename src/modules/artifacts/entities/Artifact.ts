@@ -10,6 +10,8 @@ import {
 import { v4 as uuidV4 } from "uuid";
 
 import { Project } from "../../accounts/entities/Project";
+import { Functional } from "../../requirements/entities/Functional";
+import { NonFunctional } from "../../requirements/entities/NonFunctional";
 import { Requirement } from "../../requirements/entities/Requirement";
 import { Verification } from "../../verifications/entities/Verification";
 import { Content } from "./Content";
@@ -53,8 +55,11 @@ class Artifact {
   @OneToMany(() => Artifact, (artifact) => artifact.evolve)
   evolved_id?: Artifact[];
 
-  @OneToMany(() => Requirement, (requirement) => requirement.artifact)
-  requirements: Requirement[];
+  @OneToMany(() => Functional, (functional) => functional.artifact)
+  functionals: Functional[];
+
+  @OneToMany(() => NonFunctional, (nonFunctional) => nonFunctional.artifact)
+  non_functionals: NonFunctional[];
 
   @OneToMany(() => Verification, (verification) => verification.artifact)
   verifications: Verification[];

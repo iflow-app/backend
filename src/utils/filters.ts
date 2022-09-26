@@ -27,12 +27,8 @@ export const nestedFilter = (
   return filters;
 };
 
-export const requirementsFilters = ({
-  artifact_id,
-  project_id,
-}: IListRequirementDTO) => {
+export const requirementsFilters = ({ project_id }: IListRequirementDTO) => {
   const filter = {
-    ...(!!artifact_id && { artifact_id }),
     ...(!!project_id && { project_id }),
   };
 

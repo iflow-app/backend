@@ -33,7 +33,10 @@ class CreateFunctionalUseCase {
       artifact_id,
     });
 
-    const functional = this.functionalRepository.create(requirement);
+    const functional = this.functionalRepository.create({
+      requirement,
+      artifact_id,
+    });
 
     return functional;
   }
