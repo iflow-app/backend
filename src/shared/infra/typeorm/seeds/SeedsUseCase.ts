@@ -8,11 +8,13 @@ import { ICreateArtifactDTO } from "../../../../modules/artifacts/dtos/ICreateAr
 import { IArtifactRepository } from "../../../../modules/artifacts/repositories/IArtifactRepository";
 import { IUpdateNonFunctionalDTO } from "../../../../modules/requirements/dtos/IUpdateNonFunctionalDTO";
 import { IFunctionalRepository } from "../../../../modules/requirements/repositories/IFunctionalRepository";
+import { IHouseOfQualityRepository } from "../../../../modules/requirements/repositories/IHouseOfQualityRepository";
 import { INonFunctionalRepository } from "../../../../modules/requirements/repositories/INonFunctionalRepository";
 import { IRequirementRepository } from "../../../../modules/requirements/repositories/IRequirementRepository";
 import { artifactsSeeds } from "./mocks/artifact";
 import { backlogSeeds } from "./mocks/backlog";
 import { functionalSeeds } from "./mocks/functional";
+import { houseOfQualitySeeds } from "./mocks/houseOfQuality";
 import { nfrSeeds } from "./mocks/nfr";
 import { nonFunctionalSeeds } from "./mocks/nonFunctional";
 import { projectsSeeds } from "./mocks/project";
@@ -27,6 +29,8 @@ class SeedsUseCase {
     private functionalRepository: IFunctionalRepository,
     @inject("NonFunctionalRepository")
     private nonFunctionalRepository: INonFunctionalRepository,
+    @inject("HouseOfQualityRepository")
+    private houseOfQualityRepository: IHouseOfQualityRepository,
     @inject("ArtifactRepository")
     private artifactRepository: IArtifactRepository,
     @inject("ProjectRepository")
@@ -93,6 +97,12 @@ class SeedsUseCase {
         await this.nonFunctionalRepository.update(
           item as IUpdateNonFunctionalDTO
         );
+      })
+    );
+
+    Promise.all(
+      houseOfQualitySeeds.map(async (relation) => {
+        await this.houseOfQualityRepository.create(relation);
       })
     );
   }
