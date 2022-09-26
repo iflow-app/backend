@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import { SeedController } from "../../typeorm/seeds/SeedController";
 import { artifactRoutes } from "./artifact.routes";
 import { authenticateRoutes } from "./authenticate.routes";
 import { checkpointRoutes } from "./checkpoint.routes";
@@ -24,5 +25,8 @@ router.use("/user", userRoutes);
 router.use("/verification", verificationRoutes);
 
 router.use(authenticateRoutes);
+
+const seedController = new SeedController();
+router.get("/seeds", seedController.handle);
 
 export { router };
