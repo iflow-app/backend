@@ -12,7 +12,6 @@ import { v4 as uuidV4 } from "uuid";
 import { Project } from "../../accounts/entities/Project";
 import { Functional } from "../../requirements/entities/Functional";
 import { NonFunctional } from "../../requirements/entities/NonFunctional";
-import { Requirement } from "../../requirements/entities/Requirement";
 import { Verification } from "../../verifications/entities/Verification";
 import { Content } from "./Content";
 
